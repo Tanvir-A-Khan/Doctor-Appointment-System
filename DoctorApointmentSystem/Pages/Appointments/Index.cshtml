@@ -1,0 +1,92 @@
+﻿@page
+@model DoctorApointmentSystem.Pages.Appointments.IndexModel
+
+@{
+    ViewData["Title"] = "Appointment";
+}
+
+<h1>Appointment List</h1>
+
+<p>
+    <a class="btn btn-primary" asp-page="Create">New Appointment</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                Patient ID
+            </th>
+           
+            <th>
+                Patient Name
+            </th>
+           
+            <th>
+               Phone
+            </th>
+            <th>
+               Address
+            </th>
+            <th>
+               Age
+            </th>
+            <th>  <b> >>> </b></th>
+            <th>
+                Doctor ID
+            </th>
+            <th>
+                Doctor
+            </th>
+            <th>
+                Consultant
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Appointment) {
+        <tr>
+            <td>
+                <h4>
+                    |__ @Html.DisplayFor(modelItem => item.PatientData.PatientId) __|
+
+                </h4>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientData.PatientName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientData.PatientPhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientData.PatientAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientData.PatientAge)
+            </td>
+            <td>
+               <h4> >>> </h4>
+            </td>
+            <td>
+                <h4>
+                     |__  @Html.DisplayFor(modelItem => item.DoctorData.DoctorId) __|
+
+                </h4>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoctorData.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoctorData.Consultant)
+            </td>
+                <td>
+                    <a class="btn btn-primary" asp-page="./Edit" asp-route-id="@item.Id">Customize</a> 
+                    <a class="btn btn-secondary" asp-page="./Details" asp-route-id="@item.Id">Details</a> 
+                    <a class ="btn btn-danger" asp-page="./Delete" asp-route-id="@item.Id">Cancel</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

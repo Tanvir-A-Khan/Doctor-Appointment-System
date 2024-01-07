@@ -1,0 +1,60 @@
+﻿@page
+@model DoctorApointmentSystem.Pages.Patients.IndexModel
+
+@{
+    ViewData["Title"] = "Patient List";
+}
+
+<h1>Patient List</h1>
+
+<p>
+    <a class="btn btn-primary" asp-page="Create">New Patient</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Patient[0].PatientId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Patient[0].PatientName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Patient[0].PatientPhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Patient[0].PatientAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Patient[0].PatientAge)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Patient) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientPhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientAge)
+            </td>
+            <td>
+                    <a class="btn btn-primary" asp-page="./Edit" asp-route-id="@item.PatientId">Customize</a> 
+                    <a class="btn btn-secondary" asp-page="./Details" asp-route-id="@item.PatientId">Details</a> 
+                    <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.PatientId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
